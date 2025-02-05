@@ -12,8 +12,8 @@
     <form action="{{ url_for('add') }}" method="POST">
       {{ form.hidden_tag() }}
       <p>
-        <label class="form-label">{{ form.title.label }}</label> 
-        {{ form.title(size=50) }}
+        <label >{{ form.title.label }}</label> 
+        {{ form.title(size=100, class="form-input") }}
         {% if form.title.errors %}
             <ul class="errors">
                 {% for error in form.title.errors %}
@@ -24,8 +24,8 @@
     </p>
     
     <p>
-        <label class="form-label">{{ form.author.label }}</label> 
-        {{ form.author(size=50) }}
+        <label >{{ form.author.label }}</label> 
+        {{ form.author(size=100, class="form-input") }}
         {% if form.author.errors %}
             <ul class="errors">
                 {% for error in form.author.errors %}
@@ -35,7 +35,7 @@
         {% endif %}
     </p>
     
-      <p>{{ form.submit() }}</p>
+    <a href="{{ url_for('add') }}"><button class="add_book_button ">Add New Book</button></a>
     </form>
   </body>
 </html>

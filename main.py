@@ -78,7 +78,7 @@ def update_book(book_id):
     return render_template('edit.html', form=form, book_id=book.id)
 
 # Delete Book Route
-@app.route("/delete/<int:book_id>", methods=['POST'])
+@app.route("/delete/<int:book_id>", methods=['GET', 'POST'])
 def delete_book(book_id):
     book = Book.query.get_or_404(book_id)
     db.session.delete(book)
@@ -87,3 +87,32 @@ def delete_book(book_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+""" Use http://127.0.0.1:5000/edit/<id number> to edit  """
+""" Use http://127.0.0.1:5000/delete/<id number> to edit  """
+""" If you want to add the buttons in index.html : 
+
+  <!-- <td>
+    <!-- Edit Button -->
+  <a href="{{ url_for('update_book', book_id=book.id) }}">
+    <button>Edit</button>
+  </a>
+
+  <!-- Delete Button -->
+  <form
+    action="{{ url_for('delete_book', book_id=book.id) }}"
+    method="post"
+    style="display: inline"
+  >
+    <button
+      type="submit"
+      onclick="return confirm('Are you sure you want to delete this book?')"
+    >
+      Delete
+    </button>
+  </form>
+</td>
+-->
+
+"""

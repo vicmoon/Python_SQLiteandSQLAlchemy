@@ -8,12 +8,35 @@ a {
   color: greenyellow;
   margin-bottom: 10px;
 }
+form {
+  margin-top: 100px;
+}
 
-.form-label {
+.form-input {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
-  display: block; /* Ensures it behaves like a label */
+  display: inline-block; /* Keeps label width controlled */
+  width: 300px; /* Adjust width as needed */
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.add_book_button {
+  color: #28a745;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.add_book_button:hover {
+  background-color: #007bff;
+}
+.form-input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .books {
