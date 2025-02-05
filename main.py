@@ -2,11 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
+import my_secrets
 app = Flask(__name__)
 
 all_books = []
 
-app.config['SECRET_KEY'] = "230853496459jgirfngdf8"
+app.config['SECRET_KEY'] = my_secrets.SECRET_KEY
 
 class newBookForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
