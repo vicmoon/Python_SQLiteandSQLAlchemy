@@ -2,34 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
     <title>Add Book</title>
   </head>
   <body>
     <form action="{{ url_for('add') }}" method="POST">
       {{ form.hidden_tag() }}
-
       <p>
-        {{form.title.label}} <br />
-        {{form.title(size=30)}}
+        <label class="form-label">{{ form.title.label }}</label> 
+        {{ form.title(size=50) }}
         {% if form.title.errors %}
-                <ul class="errors">
-                    {% for error in form.title.errors %}
-                        <li style="color: red;">{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-      </p>
-      <p>
-        {{ form.author.label }}<br />
-            {{ form.author(size=30) }}
-            {% if form.author.errors %}
-                <ul class="errors">
-                    {% for error in form.author.errors %}
-                        <li style="color: red;">{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-      </p>
+            <ul class="errors">
+                {% for error in form.title.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </p>
+    
+    <p>
+        <label class="form-label">{{ form.author.label }}</label> 
+        {{ form.author(size=50) }}
+        {% if form.author.errors %}
+            <ul class="errors">
+                {% for error in form.author.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </p>
+    
       <p>{{ form.submit() }}</p>
     </form>
   </body>
