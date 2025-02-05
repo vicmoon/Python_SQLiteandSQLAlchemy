@@ -6,6 +6,7 @@ body {
 
 a {
   color: greenyellow;
+  margin-bottom: 10px;
 }
 
 .form-label {
@@ -13,4 +14,31 @@ a {
   font-weight: bold;
   margin-bottom: 5px;
   display: block; /* Ensures it behaves like a label */
+}
+
+.books {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+.books th,
+.books td {
+  padding: 10px; /* Adds spacing inside cells */
+  text-align: center; /* Centers text inside cells */
+}
+
+.new_button {
+  padding: 10px 15px;
+  margin-top: 20px;
+  background-color: #28a745; /* Green */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.new_button:hover {
+  background-color: #218838;
 }

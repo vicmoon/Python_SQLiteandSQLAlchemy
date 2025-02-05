@@ -20,6 +20,17 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
+
+class NewBookForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    author = StringField('Author', validators=[DataRequired()])
+    submit = SubmitField('Add')
+
+class EditBookForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    author = StringField('Author', validators=[DataRequired()])
+    submit = SubmitField('Update')
+
 # Define a model
 class Book(db.Model):
     id = Column(Integer, primary_key=True)  # Fix: Add Primary Key
@@ -33,12 +44,6 @@ class Book(db.Model):
 with app.app_context():
     db.create_all()
 
-# WTForms form for adding books
-class NewBookForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    author = StringField('Author', validators=[DataRequired()])
-    submit = SubmitField('Add')
-
 # Home Route
 @app.route('/', methods=['GET'])
 def home():
@@ -49,32 +54,36 @@ def home():
 @app.route("/add", methods=['GET', 'POST'])
 def add():
     form = NewBookForm()
+    
     if form.validate_on_submit():
         new_book = Book(title=form.title.data, author=form.author.data)
         db.session.add(new_book)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("home"))  # Redirect to home page
     return render_template("add.html", form=form)
 
+
 # Update Book Route
-@app.route("/update/<int:book_id>", methods=['POST', 'PUT'])
+@app.route("/edit/<int:book_id>", methods=['GET', 'POST'])
 def update_book(book_id):
-    book = Book.query.get(book_id)
-    if book:
-        book.author = "J.K. Rowling (Updated)"
+    book = Book.query.get_or_404(book_id)
+    form = EditBookForm(obj=book)
+
+    if form.validate_on_submit():
+        book.title = form.title.data
+        book.author = form.author.data
         db.session.commit()
-        return redirect(url_for("home"))
-    return "Book not found", 404
+        return redirect(url_for("home"))  # Redirect to home page
+
+    return render_template('edit.html', form=form, book_id=book.id)
 
 # Delete Book Route
-@app.route("/delete/<int:book_id>", methods=['POST', 'DELETE'])
+@app.route("/delete/<int:book_id>", methods=['POST'])
 def delete_book(book_id):
-    book = Book.query.get(book_id)
-    if book:
-        db.session.delete(book)
-        db.session.commit()
-        return redirect(url_for("home"))
-    return "Book not found", 404
+    book = Book.query.get_or_404(book_id)
+    db.session.delete(book)
+    db.session.commit()
+    return redirect(url_for("home"))  # Redirect back to homepage
 
 if __name__ == "__main__":
     app.run(debug=True)

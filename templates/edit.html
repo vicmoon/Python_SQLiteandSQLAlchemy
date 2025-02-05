@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Book</title>
+  </head>
+  <body>
+    <h1>Edit Book</h1>
+    <form method="post">
+      {{ form.hidden_tag() }}
+      <label for="title">Title:</label>
+      {{ form.title }}
+      <br />
+      <label for="author">Author:</label>
+      {{ form.author }}
+      <br />
+      {{ form.submit }}
+    </form>
+    <br />
+    <a href="{{ url_for('home') }}"><button>Back to Home</button></a>
+  </body>
+</html>
