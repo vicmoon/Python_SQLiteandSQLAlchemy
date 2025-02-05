@@ -5,11 +5,12 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-import my_secrets
+import os
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = my_secrets.SECRET_KEY
+
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "baf3e1c5f9a7e8d3f2b4c5d1a2e9f8c7")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///books-collection.db"
 
 # Define base class for ORM
