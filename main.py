@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "baf3e1c5f9a7e8d3f2b4c5d1a2e9f8c7")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///books-collection.db"
-ADMIN_USERNAME = os.getenv.ADMIN_USERNAME
-ADMIN_PASSWORD = os.getenv.ADMIN_PASSWORD 
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 
 
 def check_auth(username, password):
