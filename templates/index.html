@@ -16,6 +16,7 @@
         <th>Number</th>
         <th>Title</th>
         <th>Author</th>
+        <th>Thoughts</th>
         <!-- <th>Actions</th> -->
       </tr>
       {% for book in books %}
@@ -23,6 +24,7 @@
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
+        <td>{{ book.link }}</td>
       </tr>
       {% endfor %}
     </table>

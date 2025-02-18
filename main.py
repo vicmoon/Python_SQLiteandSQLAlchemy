@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, URLField
 from wtforms.validators import DataRequired
 import os
 # import my_secrets
@@ -54,11 +54,13 @@ db.init_app(app)
 class NewBookForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     author = StringField('Author', validators=[DataRequired()])
+    link = URLField("Thoughts", validators=[DataRequired()])
     submit = SubmitField('Add')
 
 class EditBookForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     author = StringField('Author', validators=[DataRequired()])
+    link = URLField("Thoughts", validators=[DataRequired()])
     submit = SubmitField('Update')
 
 # Define a model
@@ -66,6 +68,7 @@ class Book(db.Model):
     id = Column(Integer, primary_key=True)  # Fix: Add Primary Key
     title = Column(String(250), nullable=False, unique=True)
     author = Column(String(250), nullable=False)
+    link = Column(String(250), nullable=False, unique=True)
 
     def __repr__(self):
         return f"<Book {self.title} by {self.author}>"
