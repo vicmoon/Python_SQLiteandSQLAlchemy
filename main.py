@@ -8,7 +8,7 @@ from sqlalchemy import Column, Integer, String
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import os
-import my_secrets
+# import my_secrets
 
 app = Flask(__name__)
 
