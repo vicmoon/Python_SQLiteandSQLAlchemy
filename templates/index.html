@@ -24,7 +24,9 @@
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
-        <td>{{ book.link }}</td>
+        <td>
+          <a href="{{ book.link }}" target="_blank"> Read </a>
+        </td>
       </tr>
       {% endfor %}
     </table>
