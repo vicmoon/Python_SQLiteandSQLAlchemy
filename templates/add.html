@@ -36,8 +36,14 @@
     </p>
         
     <p>
-      <label >{{ form.link.label }}</label> 
+      <label>{{ form.link.label }}</label> 
       {{ form.link(size=100, class="form-input") }}
+  
+      {% if form.link.data %} 
+          <br>
+          <a href="{{ form.link.data }}" target="_blank">{{ form.link.data }}</a>
+      {% endif %}
+  
       {% if form.link.errors %}
           <ul class="errors">
               {% for error in form.link.errors %}
@@ -46,7 +52,7 @@
           </ul>
       {% endif %}
   </p>
-    
+  
     <a href="{{ url_for('add') }}"><button class="add_book_button ">Add New Book</button></a>
     </form>
   </body>
