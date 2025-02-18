@@ -38,11 +38,10 @@
     <p>
       <label>{{ form.link.label }}</label> 
       {{ form.link(size=100, class="form-input") }}
-  
-      {% if form.link.data %} 
+
           <br>
-          <a href="{{ form.link.data }}" target="_blank">{{ form.link.data }}</a>
-      {% endif %}
+          <a href="{{ form.link.data }}" target="_blank"> My Thoughts</a>
+    
   
       {% if form.link.errors %}
           <ul class="errors">
