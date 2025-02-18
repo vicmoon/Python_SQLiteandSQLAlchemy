@@ -68,7 +68,7 @@ class Book(db.Model):
     id = Column(Integer, primary_key=True)  # Fix: Add Primary Key
     title = Column(String(250), nullable=False, unique=True)
     author = Column(String(250), nullable=False)
-    link = Column(String(250), nullable=False, unique=True)
+    link = Column(String(250), nullable=False)
 
     def __repr__(self):
         return f"<Book {self.title} by {self.author}>"

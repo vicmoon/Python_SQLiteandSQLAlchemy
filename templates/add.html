@@ -37,10 +37,10 @@
         
     <p>
       <label >{{ form.link.label }}</label> 
-      {{ form.author(size=100, class="form-input") }}
-      {% if form.author.errors %}
+      {{ form.link(size=100, class="form-input") }}
+      {% if form.link.errors %}
           <ul class="errors">
-              {% for error in form.author.errors %}
+              {% for error in form.link.errors %}
                   <li style="color: red;">{{ error }}</li>
               {% endfor %}
           </ul>
