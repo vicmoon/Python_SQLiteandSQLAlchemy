@@ -90,7 +90,7 @@ def add():
     form = NewBookForm()
     
     if form.validate_on_submit():
-        new_book = Book(title=form.title.data, author=form.author.data)
+        new_book = Book(title=form.title.data, author=form.author.data, link=form.link.data)
         db.session.add(new_book)
         db.session.commit()
         return redirect(url_for("home"))  # Redirect to home page
