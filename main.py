@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, Response
 from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import current_user
+# from flask_login import current_user
 from functools import wraps
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String
